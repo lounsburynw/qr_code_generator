@@ -1,4 +1,5 @@
 from flask import Flask, request, send_file, jsonify
+import os
 import io
 import qrcode
 from functools import wraps
@@ -39,4 +40,6 @@ def generate_qr():
     return send_file(buf, mimetype='image/png')
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get('PORT', 5000))  # Get the port from the environment or default to 5000
+    #app.run()
+    app.run(host='0.0.0.0', port=port)
